@@ -55,10 +55,15 @@ Para iniciar o shell:
 deepshell
 ```
 
+Para iniciar o shell como root:
+```bash
+sudo deepshell
+```
+
 CONFIGURAÇÃO:
 Edite o arquivo de configuração:
 ```bash
-nano ~/.config/deepshell/config.lua
+sudo nano /usr/local/share/deepshell/config.lua
 ```
 
 Exemplo de configuração:
