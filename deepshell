@@ -1,0 +1,27 @@
+#!/bin/bash
+
+# Verifica se LuaJIT está instalado
+if ! command -v luajit >/dev/null 2>&1; then
+    echo "Erro: LuaJIT não está instalado."
+    exit 1
+fi
+
+# Diretório de instalação do DeepShell
+SHELL_DIR="/usr/local/share/deepshell"
+
+# Verifica se o shell está instalado
+if [ ! -d "$SHELL_DIR" ]; then
+    echo "Erro: DeepShell não está instalado corretamente."
+    exit 1
+fi
+
+# Configura os caminhos Lua
+export LUA_PATH="$SHELL_DIR/?.lua;$SHELL_DIR/modulos/?.lua;/usr/share/lua/5.1/?.lua;/usr/share/lua/5.1/?/init.lua;;"
+export LUA_CPATH="/usr/lib/lua/5.1/?.so;/usr/lib/lua/5.1/loadall.so;;"
+
+# Configura variáveis de ambiente
+export DEEPSHELL_HOME="$SHELL_DIR"
+export DEEPSHELL_HISTORY="$HOME/.deepshell_history"
+
+# Executa o shell
+exec luajit "$SHELL_DIR/main.lua" "$@"
